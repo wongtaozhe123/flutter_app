@@ -2,9 +2,14 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'loading.dart';
 
 void main() => runApp(MaterialApp(
-  home: Login()
+  routes: {
+    '/':(context) => Login(),
+    '/home':(context) => loading()
+  },
 ));
 
 MyApp(){}
@@ -17,6 +22,7 @@ class Login extends StatefulWidget{
 class _LoginState extends State<Login> {
   String google='GOOGLE';
   int sum=0;
+
   List<int> num = [2,3,4,5,6,9];
   @override
   Widget cardTemplate(x){
@@ -105,7 +111,11 @@ class _LoginState extends State<Login> {
               icon: Icon(Icons.email),
               iconSize: 40.0,
               color: Colors.red[600],
-              onPressed: (){},
+              onPressed: (){
+                Navigator.pushReplacementNamed(context, '/home',arguments: {
+                  'temp':'NOT GOOGLE'
+                });
+              },
             ),
             SizedBox(width: 100.0, height: 20),
             Container(
